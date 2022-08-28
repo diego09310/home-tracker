@@ -1,0 +1,36 @@
+# Ignore everything
+*
+
+# track source code
+!src/
+!src/**
+!tsconfig.json
+
+# track tests
+!test/
+!test/**
+!jest.config.js
+
+# track package.json
+!package.json
+!package-lock.json
+
+#track CI files
+!.github/
+!.github/**
+!.travis.yml
+
+# track .vscode folder
+!.vscode/
+!.vscode/**
+
+# track lint files
+!.eslintignore
+!.eslintrc
+
+
+# track misc files
+!.gitignore
+!.env.example
+!LICENSE
+!README.md
