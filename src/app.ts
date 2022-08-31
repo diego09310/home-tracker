@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import lusca from "lusca";
 import * as controller from "./controllers";
 import "./config";
+import { scheduleJobs } from "./services/scheduler";
 
 // Create Express server
 const app = express();
@@ -19,5 +20,7 @@ app.use(lusca.xssProtection(true));
 const router = express.Router();
 controller.register(router);
 app.use(router);
+
+scheduleJobs();
 
 export default app;
