@@ -11,7 +11,7 @@ const colors = new Map([
     ["error", red],
 ]);
 
-const nonLocalEnvs = ["development", "qa", "production"];
+const nonLocalEnvs = ["development", "production"];
 
 const consoleFormat = printf( ({ level, message, timestamp }) => {
     const color = colors.has(level) ? colors.get(level) : "";
@@ -21,7 +21,7 @@ const consoleFormat = printf( ({ level, message, timestamp }) => {
 const options: winston.LoggerOptions = {
     transports: [
         new winston.transports.Console({
-            level: nonLocalEnvs.includes(process.env.NODE_ENV) || true ? "error" : "debug",
+            level: nonLocalEnvs.includes(process.env.NODE_ENV) ? "error" : "debug",
             format: combine(
                 splat(),
                 timestamp({
