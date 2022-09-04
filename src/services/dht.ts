@@ -4,6 +4,7 @@ import logger from "../util/logger";
 import { delay } from "../util/delay";
 
 const MAX_TRIES = 3;
+const DELAY_MS = 2000;
 
 export type DhtData = {
     temperature: number,
@@ -42,7 +43,7 @@ async function getSensorData(model: dht.SensorType, pin: number): Promise<DhtDat
     let tries = 0;
     let data = undefined;
     while (data === undefined && tries < MAX_TRIES) {
-        const delay_ms = tries === 0 ? 0 : 1000;
+        const delay_ms = tries === 0 ? 0 : DELAY_MS;
         await delay(delay_ms);
         tries++;
         data = sensor.read(model, pin);
