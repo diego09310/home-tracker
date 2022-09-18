@@ -1,9 +1,9 @@
+import "./config";
 import express from "express";
 import compression from "compression";
 import bodyParser from "body-parser";
 import lusca from "lusca";
 import * as controller from "./controllers";
-import "./config";
 import { scheduleJobs } from "./services/scheduler";
 
 // Create Express server
