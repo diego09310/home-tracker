@@ -3,10 +3,11 @@ import fs from "fs";
 import schedule from "node-schedule";
 import { Schedule } from "types";
 import { getTemperature } from "./dht";
-import { save } from "../repositories/ticktock";
 import logger from "../util/logger";
+import { save } from "./database";
 
 const MS_TO_S = 1/1000;
+
 export function scheduleJobs() {
     const schedules = yaml.load(fs.readFileSync("schedules.yml", "utf-8")) as Schedule[];
     scheduleDht(schedules); // Invert?, go through it and call corresponding filter?
@@ -21,6 +22,9 @@ function scheduleDht(schedules: Schedule[]) {
                     logger.warn("Couldn't get data from DHT sensor");
                     return;
                 }
-                save([`${sch.id}.temp`, `${sch.id}.humidity`], [data.temperature, data.humidity], fireDate.valueOf()*MS_TO_S);
+                save([`${sch.id}.temp`, `${sch.id}.humidity`], 
+                                [data.temperature, data.humidity], 
+                                fireDate.valueOf()*MS_TO_S);
             }));
 }
+

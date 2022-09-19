@@ -24,7 +24,7 @@ if (!isPi()) {
     });
 }
 
-export async function getTemperature (model: dht.SensorType, pin: number): Promise<DhtData> {
+export async function getTemperature(model: dht.SensorType, pin: number): Promise<DhtData> {
     try {
         const res = await getSensorData(model, pin);
         if (res === undefined) {
