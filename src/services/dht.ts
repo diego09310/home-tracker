@@ -46,7 +46,11 @@ async function getSensorData(model: dht.SensorType, pin: number): Promise<DhtDat
         const delay_ms = tries === 0 ? 0 : DELAY_MS;
         await delay(delay_ms);
         tries++;
-        data = sensor.read(model, pin);
+        try {
+            data = await sensor.read(model, pin);
+        } catch(e) {
+            console.log(`Error reading sensor data - ${tries}`);
+        }
     }
     return data;
 }
