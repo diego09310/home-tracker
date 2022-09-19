@@ -3,6 +3,8 @@ import logger from "../util/logger";
 import * as util from "util";
 import { Db } from "./Db";
 
+const MS_TO_S = 1/1000;
+
 const TICKTOCK_URL = process.env.TICKTOCK_URL + "/api/put";
 const HOST = process.env.HOST;
 
@@ -18,7 +20,7 @@ axios.interceptors.response.use(response => {
 
 export class Ticktock implements Db {
     async save(name: string[], value: number[] | string[], ts?: number) {
-        ts = ts ?? Date.now();
+        ts = ts ?? Date.now()*MS_TO_S;
         const data = [];
         for (let i = 0; i < name.length; i++) {
             data.push({
