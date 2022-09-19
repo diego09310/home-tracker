@@ -1,6 +1,6 @@
 import * as core from "express-serve-static-core";
 import { Request, Response } from "express";
-import { save } from "../repositories/ticktock";
+import { save } from "../services/database";
 
 export const register = (router: core.Router) => {
     router.post("/api/sensor", postSensor);
