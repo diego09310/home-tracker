@@ -3,7 +3,7 @@ import fs from "fs";
 import schedule from "node-schedule";
 import { Schedule } from "types";
 import { getTemperature } from "./dht";
-import logger from "../util/logger";
+import logger from "../utils/logger";
 import { save } from "./database";
 
 const MS_TO_S = 1/1000;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import logger from "../util/logger";
+import logger from "../utils/logger";
 import * as util from "util";
 import { Db } from "./Db";
 
@@ -34,7 +34,7 @@ export class Ticktock implements Db {
         }
         
         if (process.env.WRITE_TO_DB !== "true") {
-            console.log(`Fake writing to ${TICKTOCK_URL} - ${JSON.stringify(data, null, 2)}`);
+            logger.debug(`Fake writing to ${TICKTOCK_URL} - ${JSON.stringify(data, null, 2)}`);
             return;
         }
         
@@ -43,4 +43,5 @@ export class Ticktock implements Db {
                 logger.error("Error saving data to ticktock: ", error.message);
             });
     }
+
 }

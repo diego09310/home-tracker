@@ -1,4 +1,4 @@
-import logger from "../util/logger";
+import logger from "../utils/logger";
 import { Db } from "./Db";
 
 export class InfluxDb implements Db {

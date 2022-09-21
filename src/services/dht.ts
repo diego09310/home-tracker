@@ -1,7 +1,7 @@
-import { isPi } from "../util/detect-rpi";
+import { isPi } from "../utils/detect-rpi";
 import dht from "node-dht-sensor";
-import logger from "../util/logger";
-import { delay } from "../util/delay";
+import logger from "../utils/logger";
+import { delay } from "../utils/delay";
 
 const MAX_TRIES = 3;
 const DELAY_MS = 2000;
@@ -25,18 +25,14 @@ if (!isPi()) {
 }
 
 export async function getTemperature(model: dht.SensorType, pin: number): Promise<DhtData> {
-    try {
-        const res = await getSensorData(model, pin);
-        if (res === undefined) {
-            return undefined;
-        }
-        return { 
-            temperature: res.temperature,
-            humidity: res.humidity,
-        };
-    } catch (err) {
-        logger.error("Failed to read sensor data:", err); // TODO: If fails, what to return?
+    const res = await getSensorData(model, pin);
+    if (res === undefined) {
+        return undefined;
     }
+    return { 
+        temperature: res.temperature,
+        humidity: res.humidity,
+    };
 }
 
 async function getSensorData(model: dht.SensorType, pin: number): Promise<DhtData> {
@@ -49,7 +45,7 @@ async function getSensorData(model: dht.SensorType, pin: number): Promise<DhtDat
         try {
             data = await sensor.read(model, pin);
         } catch(e) {
-            console.log(`Error reading sensor data - ${tries}`);
+            logger.error(`Error reading sensor data - ${tries}`);
         }
     }
     return data;
