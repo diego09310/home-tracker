@@ -4,7 +4,7 @@ import compression from "compression";
 import bodyParser from "body-parser";
 import lusca from "lusca";
 import * as controller from "./controllers";
-import { scheduleJobs } from "./services/scheduler";
+import { scheduleJobs } from "./schedulers/scheduler";
 
 // Create Express server
 const app = express();
