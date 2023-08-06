@@ -6,8 +6,6 @@ import { getTemperature } from "./dht";
 import logger from "../utils/logger";
 import { save } from "./database";
 
-const MS_TO_S = 1/1000;
-
 export function scheduleJobs() {
     const schedules = yaml.load(fs.readFileSync("schedules.yml", "utf-8")) as Schedule[];
     scheduleDht(schedules); // Invert?, go through it and call corresponding filter?
@@ -24,7 +22,7 @@ function scheduleDht(schedules: Schedule[]) {
                 }
                 save([`${sch.id}.temp`, `${sch.id}.humidity`], 
                                 [data.temperature, data.humidity], 
-                                fireDate.valueOf()*MS_TO_S);
+                                fireDate.valueOf());
             }));
 }
 

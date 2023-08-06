@@ -1,0 +1,9 @@
+# Sample of schedules.yml
+- name: Bedroom
+  id: bedroom
+  type: sensor
+  attributes:
+    model: dht
+    version: 22
+    pin: 4
+  period: 60

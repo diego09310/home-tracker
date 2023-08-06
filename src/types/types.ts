@@ -5,7 +5,7 @@ export type Schedule = {
     id: string,
     type: string,
     attributes: {
-        model: string, // TODO: Review
+        model: string,
         version: SensorType,
         pin: number,
     },

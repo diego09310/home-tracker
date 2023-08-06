@@ -32,5 +32,6 @@
 # track misc files
 !.gitignore
 !.env.example
+!schedules_example.yml
 !LICENSE
 !README.md

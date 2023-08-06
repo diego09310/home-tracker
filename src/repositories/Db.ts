@@ -1,4 +1,4 @@
-import { InfluxDb } from "./InfluxDb";
+import { InfluxDbClient } from "./InfluxDbClient";
 import { Ticktock } from "./Ticktock";
 
 export interface Db {
@@ -6,6 +6,6 @@ export interface Db {
 }
 
 export const dbs = new Map([
-    ["ticktock", new Ticktock()],
-    ["influxdb", new InfluxDb()]
+    ["ticktock", Ticktock.getInstance()],
+    ["influxdb", InfluxDbClient.getInstance()]
 ]);
