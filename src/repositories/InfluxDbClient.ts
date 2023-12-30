@@ -3,7 +3,7 @@ import { Db } from "./Db";
 import logger from "../utils/logger";
 
 const HOST = process.env.HOST;
-const MS_TO_NS = 1e6;
+const S_TO_NS = 1e9;
 
 export class InfluxDbClient implements Db {
 
@@ -24,20 +24,27 @@ export class InfluxDbClient implements Db {
     }
 
     async save(name: string[], value: number[] | string[], ts?: number) {
-        const writeApi = this.getWriteApi();
         let point = new Point("sensor")
                 .tag("host", HOST);
         for (let i = 0; i < name.length; i++) {
             point = point.floatField(name[i], value[i]);
         }
-        if (ts) {
-            point = point.timestamp(ts * MS_TO_NS);
-        }
-        writeApi.writePoint(point);
-        writeApi.close()
-                .catch(() => {
-                    logger.error("Error saving sensor data");
-                });
-    }
 
+        if (ts) {
+            point = point.timestamp(ts * S_TO_NS);
+        }
+
+        if (process.env.WRITE_TO_DB !== "true") {
+            logger.debug(`Fake writing to ${process.env.INFLUX_URL} - ${JSON.stringify(point, null, 2)}`);
+            return;
+        }
+
+        const writeApi = this.getWriteApi();
+        writeApi.writePoint(point);
+        try {
+            await writeApi.close();
+        } catch (err) {
+            throw new Error(`InfluxDB error: ${err.message}`);
+        }
+    }
 }

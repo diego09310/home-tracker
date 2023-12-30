@@ -5,6 +5,8 @@ import { delay } from "../utils/delay";
 
 const MAX_TRIES = 3;
 const DELAY_MS = 2000;
+const DEFAULT_SENSOR_TYPE = 22;
+const DEFAULT_SENSOR_PIN = 4;
 
 export type DhtData = {
     temperature: number,
@@ -24,7 +26,9 @@ if (!isPi()) {
     });
 }
 
-export async function getTemperature(model: dht.SensorType, pin: number): Promise<DhtData> {
+export async function getTemperature(
+        model: dht.SensorType = DEFAULT_SENSOR_TYPE, 
+        pin: number = DEFAULT_SENSOR_PIN): Promise<DhtData> {
     const res = await getSensorData(model, pin);
     if (res === undefined) {
         return undefined;
