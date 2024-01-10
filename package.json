@@ -1,7 +1,7 @@
 {
-    "name": "home-weather-tracker",
+    "name": "home-tracker",
     "version": "0.1.0",
-    "description": "Service to track weather parameters from different sources using ticktock as TSDB",
+    "description": "Service to track parameters from different sources using ticktock as TSDB",
     "author": {
         "name": "Diego Avendaño Peces",
         "email": "dap09310@gmail.com",
