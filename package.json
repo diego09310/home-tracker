@@ -30,7 +30,6 @@
         "@influxdata/influxdb-client": "^1.33.2",
         "async": "^3.2.5",
         "axios": "^1.6.3",
-        "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.20.2",
         "compression": "^1.7.4",
         "dotenv": "^16.3.1",
@@ -46,7 +45,6 @@
     },
     "devDependencies": {
         "@types/async": "^3.2.24",
-        "@types/bcrypt-nodejs": "^0.0.31",
         "@types/body-parser": "^1.19.5",
         "@types/chai": "^4.3.11",
         "@types/compression": "^1.7.5",
@@ -63,7 +61,6 @@
         "@types/request": "^2.48.12",
         "@types/request-promise": "^4.1.51",
         "@types/supertest": "^6.0.2",
-        "@types/winston": "^2.4.4",
         "@typescript-eslint/eslint-plugin": "^6.17.0",
         "@typescript-eslint/parser": "^6.17.0",
         "chai": "^5.0.0",
