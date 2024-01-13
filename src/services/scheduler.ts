@@ -7,9 +7,13 @@ import logger from "../utils/logger";
 import { save } from "./database";
 
 const MS_TO_S = 1 / 1000;
+const SCHEDULES_FILE = "schedules.yml";
 
 export function scheduleJobs() {
-    const schedules = yaml.load(fs.readFileSync("schedules.yml", "utf-8")) as Schedule[];
+    if (!fs.existsSync(SCHEDULES_FILE)) {
+        return;
+    }
+    const schedules = yaml.load(fs.readFileSync(SCHEDULES_FILE, "utf-8")) as Schedule[];
     schedules?.forEach(sch => {
         switch (sch.type) {
             case 'sensor':
