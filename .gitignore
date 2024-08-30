@@ -22,7 +22,7 @@
 
 # track .vscode folder
 !.vscode/
-!.vscode/**
+!.vscode/launch.json
 
 # track lint files
 !.eslintignore
