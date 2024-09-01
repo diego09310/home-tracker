@@ -35,7 +35,7 @@ export class InfluxDbClient implements Db {
         }
 
         if (process.env.WRITE_TO_DB !== "true") {
-            logger.debug(`Fake writing to ${process.env.INFLUX_URL} - ${JSON.stringify(point, null, 2)}`);
+            logger.debug(`Fake writing to ${process.env.INFLUXDB_URL} - ${JSON.stringify(point, null, 2)}`);
             return;
         }
 

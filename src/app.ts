@@ -6,6 +6,7 @@ import lusca from "lusca";
 import * as controller from "./controllers";
 import { scheduleJobs } from "./services/scheduler";
 import logger from "./utils/logger";
+import "./services/mqtt";
 
 // Create Express server
 const app = express();
