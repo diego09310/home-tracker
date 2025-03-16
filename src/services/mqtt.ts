@@ -26,13 +26,13 @@ client.on("connect", () => {
 });
 
 client.on("message", async (topic, message) => {
-    const data = JSON.parse(message.toString());
-    logger.debug(`MQTT message from topic ${topic}: temp: ${data.temp}, humidity: ${data.humidity}, ts: ${data.ts}`);
-    if (!isNumeric(data.temp) || !isNumeric(data.humidity)) {
-        logger.warn(`Invalid sensor data: temp: ${data.temp}, humidity: ${data.humidity}, ts: ${data.ts}`);
-        return;
-    }
     try {
+        const data = JSON.parse(message.toString());
+        logger.debug(`MQTT message from topic ${topic}: temp: ${data.temp}, humidity: ${data.humidity}, ts: ${data.ts}`);
+        if (!isNumeric(data.temp) || !isNumeric(data.humidity)) {
+            logger.warn(`Invalid sensor data: temp: ${data.temp}, humidity: ${data.humidity}, ts: ${data.ts}`);
+            return;
+        }
         await save([`${data.name}.temp`, `${data.name}.humidity`], [data.temp, data.humidity], data.ts);
     } catch (err) {
         logger.error(err);
